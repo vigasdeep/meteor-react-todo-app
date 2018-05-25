@@ -1,10 +1,22 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Mongo } from 'meteor/mongo';
-
+import SimpleSchema from 'simpl-schema';
  
 
-export const Tasks = new Mongo.Collection('tasks');
+export const Tasks = new Meteor.Collection('tasks');
+
+
+TaskSchema = new SimpleSchema({
+  // Our schema rules will go here.
+  text: {
+    type: String,
+    label: "Text"
+  //  regEx: SimpleSchema.RegEx.Email
+}
+});
+
+Tasks.attachSchema( TaskSchema ); 
 
 if (Meteor.isServer) {
 
